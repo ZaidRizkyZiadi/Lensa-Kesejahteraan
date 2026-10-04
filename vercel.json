@@ -3,6 +3,7 @@
   "functions": {
     "api/index.py": {
       "maxDuration": 60,
+      "includeFiles": "public/assets/**",
       "excludeFiles": "{.venv/**,**/__pycache__/**,assets/**,public/assets/media/**,*.mp4}"
     }
   }
