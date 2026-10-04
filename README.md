@@ -58,9 +58,3 @@ Semua data BPS diakses pada **4 Oktober 2026**. Isi yang sama tampil di halaman 
 
 ## Penggunaan alat bantu AI
 Dalam pengerjaan proyek ini penulis memanfaatkan Claude (Anthropic) untuk membantu menulis dan memperbaiki kode (HTML, JavaScript, dan Python), memeriksa prosedur validasi data, menyusun draf serta memeriksa naskah, dan mencari serta memahami rujukan. Penulis sendiri yang menentukan topik, alur cerita, pertanyaan penelitian, data yang dianalisis, serta rancangan analisis dan visualisasi. Setiap keluaran AI ditinjau, diuji, dan diverifikasi oleh penulis, mencakup hasil pengolahan data, angka yang dikutip, dan kesesuaian rujukan dengan sumber aslinya.
-
-## TODO sebelum dikumpulkan
-- [ ] Tautan proyek publik dan repositori publik: isi di sini dan di akhir makalah setelah Kesimpulan.
-- [x] Deklarasi penggunaan alat bantu AI (soal poin 7): teks ada di bagian "Penggunaan alat bantu AI" di atas; salin ke bagian Metodologi makalah.
-- [x] Dokumentasi pengolahan data: `DATA_PROCESSING.md`.
-- [ ] Unggah `data_mentah/` dan `data_olahan/` ke repositori.
