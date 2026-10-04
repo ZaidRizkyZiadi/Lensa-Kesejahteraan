@@ -1,0 +1,117 @@
+/* Lapisan tambahan di atas CSS asli zip */
+#dash-stage{position:fixed;left:-20000px;top:0;width:1100px;height:760px;overflow:hidden;pointer-events:none}
+.p3-wrap{display:flex;flex-direction:column;width:100%;height:100%;min-height:0}
+.p3-note{flex:none;padding:.5rem .85rem;font:500 .74rem/1.55 var(--font-poppins),sans-serif;color:#e4f3ff;border-left:3px solid #16cffb;background:rgba(0,10,40,.5);margin:0 0 .45rem;max-height:6.2em;overflow:auto}
+
+/* karakter dihapus: video diganti latar prosedural (canvas) */
+.background-video,.slink-bg-video,.slink-video-overlay{display:none!important}
+.p3-bgc{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.p3-bgc.fixed{position:fixed;width:100vw;height:100vh;z-index:1}
+
+/* slot grafik: seragam di sisi kanan, tidak menyentuh kolom kiri */
+.p3-slot{pointer-events:auto;background:rgba(2,9,20,.9);border:1px solid rgba(22,207,251,.4);padding:.6rem;
+  clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,0 100%);box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.p3-slot-right{position:absolute;left:52vw;right:2vw;top:7vh;height:82vh;z-index:6}
+.slink-left-column{max-width:50vw}
+.slink-cards-container{margin-left:3vw}
+.slink-card{width:clamp(280px,35vw,500px)}
+.slink-card.active{width:clamp(300px,38vw,540px)!important}
+.p3r-slink-screen.p3r-skill-screen .p3r-skills-container{width:min(34vw,480px)}
+.p3r-about-card{width:min(44vw,640px)}
+
+/* kartu cerita (webstory) */
+.p3-story,.p3-story-in{font:500 clamp(.7rem,.92vw,.88rem)/1.6 var(--font-poppins),sans-serif;color:#fff}
+.p3-story{position:absolute;left:3vw;top:64vh;width:43vw;z-index:5;padding:.8rem 1.1rem .9rem;background:rgba(2,9,20,.86);
+  border-left:5px solid #16cffb;clip-path:polygon(0 0,100% 0,calc(100% - 18px) 100%,0 100%)}
+.p3-story h4{margin:0 0 .35rem;font:italic 900 1rem var(--font-rodin);letter-spacing:.04em;color:#16cffb}
+.p3-story ol,.p3-story-in ol{margin:0;padding-left:1.1rem}
+.p3-story li,.p3-story-in li{margin:0 0 .3rem}
+.p3-story b,.p3-story-in b{color:#7fe3ff}
+.p3-story-in{margin-top:.7rem}
+
+/* radio/checklist Dash */
+.p3-radio{flex:none;display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;margin:0 0 .45rem;font:600 .8rem var(--font-poppins),sans-serif}
+.p3-radio label,.p3-radio label span,.p3-radio span{color:#fff!important;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem}
+.p3-radio input{accent-color:#16cffb}
+.p3-lbl{font:700 .72rem var(--font-poppins),sans-serif;color:#cfe9ff;margin-right:.6rem}
+
+/* KORELASI: satu tampilan besar per waktu */
+.p3-stack{flex:1;min-height:0;position:relative}
+.p3-view{position:absolute;inset:0;display:flex;flex-direction:column;visibility:hidden;opacity:0;transition:opacity .35s}
+.p3-view.active{visibility:visible;opacity:1}
+.p3-foot{flex:none;display:flex;gap:.6rem;align-items:center}
+.p3-foot .p3-note{flex:1;margin:.4rem 0 0;font-size:.7rem;max-height:3.3em}
+.p3-clear{flex:none;cursor:pointer;border:0;border-radius:4px;padding:.35rem .8rem;margin-top:.4rem;background:#16cffb;color:#020914;font:700 .72rem var(--font-poppins),sans-serif}
+#splom-vars-box{flex:none;display:flex;align-items:center;margin:0 0 .35rem}
+#splom-note.p3-note{font-size:.72rem;max-height:6.2em}
+
+/* HERO: menu disembunyikan total sampai hero digeser */
+body.hero-on #menu-column,body.hero-on #menu-profile-header,body.hero-on #side-number,body.hero-on .p3r-main>.hud-controls{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+#intro-hero{position:fixed;inset:0;z-index:30;display:flex;align-items:center;transition:transform .95s cubic-bezier(.76,0,.24,1)}
+#intro-hero.away{transform:translateY(-102%)}
+.hero-ov{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,8,32,.9) 0%,rgba(0,12,48,.55) 42%,rgba(0,12,48,.05) 78%),linear-gradient(0deg,rgba(0,8,32,.55),transparent 32%)}
+.hero-block{position:relative;margin-left:clamp(32px,6vw,110px);max-width:min(58vw,900px)}
+.hero-block>*{opacity:0;transform:translateY(40px)}
+#intro-hero.in .hero-block>*{animation:heroIn .9s cubic-bezier(.16,1,.3,1) both}
+#intro-hero.in .hero-block>*:nth-child(2){animation-delay:.12s}#intro-hero.in .hero-block>*:nth-child(3){animation-delay:.26s}
+#intro-hero.in .hero-block>*:nth-child(4){animation-delay:.4s}#intro-hero.in .hero-block>*:nth-child(5){animation-delay:.55s}
+@keyframes heroIn{to{opacity:1;transform:none}}
+.hero-kicker{display:inline-block;padding:.5rem 1.2rem .5rem 1.5rem;margin-bottom:1.5rem;background:#16cffb;color:#020914;font:italic 900 clamp(.75rem,.95vw,.95rem)/1 var(--font-rodin);letter-spacing:.16em;transform:skewX(-14deg)}
+.hero-title{margin:0;display:flex;flex-direction:column;font-family:var(--font-rodin);font-style:italic;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:-.05em;line-height:.9;text-shadow:6px 6px 0 #0a3ccf}
+.hero-title span:first-child{font-size:clamp(3.6rem,8vw,9rem)}
+.hero-title span:last-child{font-size:clamp(2.3rem,5.1vw,5.8rem);color:#16cffb;text-shadow:5px 5px 0 #020914}
+.hero-sub{margin-top:1.5rem;padding-left:1rem;border-left:5px solid #16cffb;font:italic 800 clamp(1rem,1.5vw,1.55rem)/1.3 var(--font-rodin);color:#fff}
+.hero-narr{margin:1.1rem 0 2rem;max-width:36rem;font:500 clamp(.85rem,1.05vw,1.05rem)/1.8 var(--font-poppins),sans-serif;color:#d6ecff}
+.hero-cue{display:flex;align-items:center;gap:1rem;background:none;border:0;color:#fff;cursor:pointer;padding:0}
+.hero-cue-text{font:italic 700 .95rem var(--font-rodin);letter-spacing:.04em}
+.hero-cue i{width:1.1rem;height:1.1rem;border-right:3px solid #16cffb;border-bottom:3px solid #16cffb;transform:rotate(45deg);animation:cueBob 1.4s ease-in-out infinite}
+@keyframes cueBob{0%,100%{translate:0 -4px}50%{translate:0 6px}}
+
+/* SUMBER: detail yang bisa dibuka */
+.p3-src-hint{margin:0 0 .5rem 12%;font:italic 700 .85rem var(--font-rodin);color:#fff;opacity:.9}
+.p3r-mail-row{cursor:pointer}
+.p3-src-detail{position:fixed;inset:0;z-index:260;display:none;align-items:center;justify-content:center;background:rgba(2,9,20,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.p3-src-detail.open{display:flex}
+.p3-src-card{width:min(780px,90vw);max-height:84vh;overflow:auto;background:#05080f;border:3px solid #fff;box-shadow:0 30px 80px rgba(0,0,0,.7);animation:srcIn .5s cubic-bezier(.16,1,.3,1) both}
+@keyframes srcIn{from{transform:translateY(70px) rotate(-6deg);opacity:0}to{transform:rotate(-2deg);opacity:1}}
+.p3-src-head{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.3rem;background:#e9423a;color:#fff;font:italic 900 clamp(1.2rem,2.2vw,1.9rem) var(--font-rodin)}
+.p3-src-x{cursor:pointer;border:2px solid #fff;border-radius:6px;background:none;color:#fff;font:700 .7rem var(--font-skip,var(--font-rodin));padding:.25rem .6rem}
+.p3-src-row{display:grid;grid-template-columns:9.5rem 1fr;gap:.9rem;padding:.65rem 1.3rem;border-top:1px solid rgba(255,255,255,.12);font:500 .84rem/1.55 var(--font-poppins),sans-serif;color:#fff}
+.p3-src-row .k{font:italic 800 .78rem var(--font-rodin);letter-spacing:.04em;color:#16cffb;text-transform:uppercase}
+.p3-src-row .empty{color:#ff6b61;font-weight:700}
+.p3-src-row .na{color:#8fa3b5}
+.p3-src-row a{color:#16cffb;word-break:break-all}
+@media(max-width:860px){.p3-slot-right{left:3vw;right:3vw;top:48vh;height:46vh}.p3-story{width:90vw}}
+/* ==========================================================================
+   UPGRADE TAMPILAN GRAFIK: selaras menu Persona 3 Reload
+   ========================================================================== */
+/* panel: gradasi navy + garis cyan di atas, sudut kanan-atas terpotong (sudah dari clip-path) */
+.p3-slot{background:linear-gradient(165deg,rgba(2,9,20,.95) 0%,rgba(3,20,56,.93) 100%);box-shadow:inset 0 3px 0 #16cffb,0 24px 60px rgba(0,0,0,.55)}
+
+/* pilihan tampilan = tab miring ala menu; terpilih = putih dengan sisi merah */
+.p3-radio{gap:.45rem .75rem;margin:.2rem 0 .65rem}
+.p3-radio label{position:relative;display:inline-flex;align-items:center;margin:0;padding:.4rem 1.15rem;cursor:pointer;
+  background:rgba(8,32,86,.88);border:1px solid rgba(22,207,251,.5);border-right:5px solid rgba(22,207,251,.5);
+  transform:skewX(-14deg);transition:background .16s,box-shadow .16s,transform .16s;margin-right:.25rem}
+.p3-radio label span{font:italic 800 .8rem var(--font-rodin),var(--font-poppins),sans-serif!important;letter-spacing:.03em;text-transform:uppercase}
+.p3-radio label:hover{background:rgba(22,207,251,.35);box-shadow:0 0 14px rgba(22,207,251,.55);transform:skewX(-14deg) translateX(3px)}
+.p3-radio label:has(input:checked){background:#fff;border-color:#fff;border-right-color:#e9423a;box-shadow:0 0 18px rgba(22,207,251,.7)}
+.p3-radio label:has(input:checked) span{color:#020914!important}
+.p3-radio input{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+
+/* catatan/cerita: plat miring dengan gradasi cyan */
+.p3-note{background:linear-gradient(90deg,rgba(22,207,251,.2),rgba(2,9,20,.7) 55%);border-left:4px solid #16cffb;
+  clip-path:polygon(0 0,100% 0,calc(100% - 14px) 100%,0 100%);padding-right:1.6rem}
+
+/* tombol Hapus sorotan */
+.p3-clear{background:#fff;color:#020914;border:0;border-right:5px solid #e9423a;border-radius:0;transform:skewX(-14deg);
+  padding:.4rem 1.1rem;font:italic 800 .74rem var(--font-rodin),sans-serif;text-transform:uppercase;letter-spacing:.03em;transition:background .15s,box-shadow .15s}
+.p3-clear:hover{background:#7de6fd;box-shadow:0 0 14px rgba(22,207,251,.7)}
+
+/* toolbar Plotly (kamera, zoom, dst.) */
+.js-plotly-plot .modebar{background:rgba(2,9,20,.72)!important;border:1px solid rgba(22,207,251,.4);padding:1px 3px}
+.js-plotly-plot .modebar-btn path{fill:#7de6fd!important}
+.js-plotly-plot .modebar-btn:hover path,.js-plotly-plot .modebar-btn.active path{fill:#fff!important}
+
+/* teks grafik lebih tajam */
+.js-plotly-plot .plotly text{text-rendering:geometricPrecision}

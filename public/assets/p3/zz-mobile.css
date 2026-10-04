@@ -1,0 +1,179 @@
+/* ==========================================================================
+   zz-mobile.css : tampilan ponsel & tablet (lebar < 1024px)
+   Dimuat SETELAH style.css dan zz-extra.css (Dash mengurutkan berkas assets menurut nama),
+   jadi aturan di sini sengaja menimpa tata letak desktop tanpa mengubah dua berkas itu.
+   Prinsip: halaman menjadi satu kolom yang bisa digulir; grafik mendapat lebar penuh.
+   Bagian terakhir (legenda .p3m-leg) dipakai oleh zz-mobile.js untuk grafik BELANJA dan PETA.
+   ========================================================================== */
+@media (max-width: 1023px) {
+  /* pemblokir "perangkat tidak didukung" dimatikan */
+  .mobile-warning { display: none !important; }
+
+  html, body { overscroll-behavior: none; }
+  .p3r-main { height: 100vh; height: 100dvh; }
+
+  /* ---------- pemuat ---------- */
+  .p3r-loading-screen { padding: 1.5rem; }
+  .loading-hud-bottom { min-width: 0; width: 100%; }
+  .loading-title { font-size: 2rem; }
+  .loading-percent { font-size: 1.8rem; min-width: 3.4rem; }
+
+  /* ---------- hero ---------- */
+  #intro-hero { overflow-y: auto; }
+  .hero-ov { background: linear-gradient(0deg, rgba(0,8,32,.9), rgba(0,12,48,.62) 60%, rgba(0,12,48,.4)); }
+  .hero-block { margin: 0 5vw; max-width: 90vw; padding: 1.2rem 0; }
+  .hero-kicker { font-size: .68rem; padding: .4rem .9rem .4rem 1.1rem; margin-bottom: 1rem; letter-spacing: .1em; }
+  .hero-title { text-shadow: 3px 3px 0 #0a3ccf; }
+  .hero-title span:first-child { font-size: clamp(2.6rem, 15vw, 5rem); }
+  .hero-title span:last-child { font-size: clamp(1.5rem, 9vw, 3.6rem); text-shadow: 3px 3px 0 #020914; }
+  .hero-sub { font-size: 1rem; margin-top: 1rem; }
+  .hero-narr { font-size: .86rem; line-height: 1.65; margin: .8rem 0 1.4rem; }
+  .hero-cue { padding: .5rem 0; min-height: 44px; }
+  .hero-cue-text { font-size: .85rem; }
+
+  /* ---------- menu utama: skala disetel skrip (--p3-ms) ---------- */
+  .side-number, .hud-controls, .p3r-main > .hud-controls { display: none !important; }
+  .menu-profile-header { top: 2.2vh; right: 4vw; }
+  .profile-name-text { font-size: 1.5rem; }
+  .profile-accent-line { width: 42vw; height: 3px; margin-top: .4rem; }
+  .menu-column {
+    left: 0 !important; top: 56% !important;
+    transform: translateY(-50%) scale(var(--p3-ms, .55)) !important;
+    transform-origin: left center !important;
+  }
+  .option-hitbox { height: 5.6rem; }
+
+  /* ---------- halaman dalam: satu kolom, bisa digulir ---------- */
+  .p3r-slink-screen { overflow-x: hidden; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+  .slink-video-container { position: fixed !important; inset: 0; }   /* latar tetap di tempat saat halaman digulir */
+  .p3r-slink-screen .slink-viewport {
+    flex-direction: column; justify-content: flex-start; height: auto; min-height: 100%;
+    padding: 1.5vh 0 6rem;
+  }
+  .slink-left-column, .p3r-skill-left-column, .p3r-about-left-column { max-width: 100% !important; width: 100%; }
+  .slink-profile-header { margin: 1vh 0 1.4vh 6vw; }
+
+  /* spanduk judul */
+  .p3r-geometric-header { width: min(92vw, 520px); height: 78px; margin-bottom: 22px; }
+  .p3r-banner-title { font-size: 2.9rem; margin-left: 6vw; padding-top: 6px; }
+
+  /* kartu BELANJA */
+  .slink-cards-container { margin-left: 6vw; width: calc(100% - 10vw); --card-height: 62px; }
+  .slink-card, .slink-card.active { width: 100% !important; max-width: 520px; height: 62px; margin-left: calc(var(--card-idx, 0) * 2vw); }
+  .card-numeral-box { width: 50px; }
+  .card-numeral-text { font-size: 1.4rem; }
+  .card-main-body { padding: 0 1rem 0 .9rem; }
+  .card-title-text { font-size: 1.02rem; }
+  .card-subtitle-text { font-size: .7rem; }
+
+  /* slot grafik: mengalir di bawah judul, tinggi layar penuh */
+  .p3-slot-right {
+    position: relative !important; left: auto !important; right: auto !important; top: auto !important;
+    width: auto !important; flex: none; margin: 14px 3vw 0;
+    height: var(--p3-slot-h, 76vh) !important; min-height: 440px;
+  }
+  #slot-splom { --p3-slot-h: 90vh; min-height: 520px; }
+  .p3-slot { padding: .45rem; }
+
+  /* cerita data */
+  .p3-story { position: relative !important; left: auto !important; top: auto !important; width: auto !important;
+    margin: 14px 3vw 0; font-size: .82rem; clip-path: none; }
+
+  /* urutan KORELASI dan PETA: judul, kontrol, grafik, baru keterangan */
+  #skill-page .p3r-skill-left-column, #about-page .p3r-about-left-column { display: contents; }
+  #skill-page .slink-profile-header, #about-page .slink-profile-header { order: 1; }
+  #skill-page .p3r-geometric-header, #about-page .p3r-geometric-header { order: 2; }
+  #skill-page .p3r-skill-tabs { order: 3; margin-left: 6vw; margin-bottom: 12px; gap: 8px; }
+  #skill-page #slot-splom { order: 4; }
+  #skill-page .p3r-skills-container { order: 5; }
+  #about-page #slot-map { order: 3; }
+  #about-page .p3r-about-card { order: 4; }
+  .p3r-skill-tab { padding: 10px 18px; }
+
+  /* batang statistik KORELASI */
+  #skill-page .p3r-skills-container { width: auto; max-height: none; overflow: visible; margin: 14px 4vw 0; padding: 0; }
+  .p3r-skill-group-header { margin-bottom: 8px; }
+  .p3r-stat-row { gap: 10px; padding: 8px 12px; }
+  .p3r-stat-name-col { width: 38%; min-width: 108px; }
+  .p3r-stat-name { white-space: normal; font-size: .8rem; line-height: 1.25; }
+  .p3r-stat-bar-track { height: 16px; }
+
+  /* kartu cerita PETA */
+  .p3r-about-card { width: auto; margin: 14px 3vw 0; padding: 16px 18px; gap: 12px; }
+  .p3r-about-card .p3r-about-name { font-size: 1.35rem; }
+  .p3r-about-title { font-size: .85rem; }
+  .p3-story-in { font-size: .84rem; }
+
+  /* kontrol di dalam slot: sasaran sentuh >= 40px */
+  .p3-radio label { padding: .55rem .9rem; }
+  .p3-radio label span { font-size: .74rem !important; }
+  .p3-note { font-size: .78rem; }
+  .p3-clear { padding: .6rem 1rem; }
+  .p3-foot .p3-note { font-size: .7rem; }
+
+  /* tombol Kembali / Tab: melayang di pojok, mudah dijangkau jempol */
+  .slink-bottom-hud {
+    position: fixed !important; right: 3vw; bottom: max(14px, env(safe-area-inset-bottom)); z-index: 60;
+    background: rgba(2,9,20,.88); border: 1px solid rgba(22,207,251,.55); padding: .3rem .6rem;
+  }
+  .slink-bottom-hud .buttons-row { gap: .6rem; }
+  #slink-confirm-btn { display: none; }                  /* "ENTER / Confirm" tidak berarti di layar sentuh */
+  .slink-hud-btn { min-height: 40px; padding: 0 .3rem; }
+  .control-key { min-height: 1.9rem; font-size: .8rem; }
+  .control-text { font-size: 1rem; }
+
+  /* SUMBER (kontak/surel) */
+  :root { --mail-skew: 0deg; --mail-rot: 0deg; }
+  .p3r-slink-screen .p3r-contact-viewport { height: auto; min-height: 100%; align-items: flex-start; padding: 2vh 3vw 6rem; width: 100%; }
+  .p3r-mail-phone-wrap { width: 100%; height: auto; min-height: 70vh; }
+  .p3r-mail-phone-card { padding: 16px 14px 20px 14px; }
+  .p3r-mail-header-row { height: 62px; margin-bottom: 6px; }
+  .p3r-mail-watermark { font-size: 4rem; }
+  .p3-src-hint { margin: 0 0 .5rem 0; font-size: .74rem; }
+  .p3r-mail-list-container { padding-right: 6px; gap: 12px; }
+  .p3r-mail-row { height: 78px; }
+  .p3r-mail-icon-block { width: 76px; }
+  .p3r-mail-icon-block svg { width: 26px; height: 26px; }
+  .p3r-mail-content-block { padding: 6px 12px 6px 8px; }
+  .p3r-mail-sender-row { font-size: .88rem; }
+  .p3r-mail-msg-text { font-size: 1rem; }
+  .p3r-contact-bottom-hud {
+    bottom: max(14px, env(safe-area-inset-bottom)); left: 3vw; background: rgba(2,9,20,.88);
+    border: 1px solid rgba(22,207,251,.55); padding: .3rem .6rem;
+  }
+  .p3-src-card { width: 94vw; }
+  .p3-src-row { grid-template-columns: 1fr; gap: .15rem; padding: .6rem 1rem; }
+  .p3-src-head { padding: .7rem 1rem; }
+}
+
+/* ponsel dalam posisi lanskap: judul lebih ringkas agar grafik tetap muncul di layar pertama */
+@media (max-width: 1023px) and (max-height: 520px) {
+  .p3r-geometric-header { height: 62px; margin-bottom: 14px; }
+  .p3r-banner-title { font-size: 2.2rem; }
+  .slink-profile-header { margin-bottom: .6vh; }
+  .p3-slot-right { min-height: 380px; }
+}
+
+/* ==========================================================================
+   Legenda warna HTML untuk grafik BELANJA dan PETA (diisi oleh zz-mobile.js, syncLegend).
+   Menggantikan colorbar Plotly yang menggencet area plot di layar sempit.
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .p3-slot-right { overflow: hidden; }
+
+  .p3m-leg {
+    position: absolute; left: .55rem; right: .55rem; bottom: .4rem; z-index: 7;
+    padding: .35rem .5rem .4rem; background: rgba(2, 9, 20, .9);
+    border-left: 3px solid #16cffb; pointer-events: none;
+    font: 600 .66rem/1.3 var(--font-poppins), sans-serif; color: #fff;
+  }
+  .p3m-leg-t { font: italic 800 .68rem var(--font-rodin), sans-serif; letter-spacing: .04em; color: #16cffb; text-transform: uppercase; margin-bottom: .25rem; }
+  .p3m-leg-bar { height: 10px; border: 1px solid rgba(255, 255, 255, .5); }
+  .p3m-leg-l { display: flex; justify-content: space-between; margin-top: .15rem; color: #cfe9ff; }
+
+  /* legenda kelas peta choropleth: 3 kolom, tiap sel = kotak warna + rentang */
+  .p3m-leg-c { display: grid; grid-template-columns: repeat(3, 1fr); gap: .15rem .4rem; }
+  .p3m-leg-c div { display: flex; align-items: center; gap: .3rem; white-space: nowrap; }
+  .p3m-leg-c i { flex: none; width: 12px; height: 12px; border: 1px solid rgba(255, 255, 255, .6); }
+  .p3m-leg-c b { font-weight: 600; color: #fff; }
+}
